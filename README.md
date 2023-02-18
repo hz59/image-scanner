@@ -11,15 +11,15 @@ Open-source project that use Drype to create a Vulnerability scan report for a c
 - grype: https://github.com/anchore/grype.git 
 
 ## Getting started ▶️
-- Scan a choosen image using drype and save the output in a txt file:
-  ```
-  grype choosen/image:tag > scan-result.txt
-  ```
-- Run the python script to render the result in a html file stylized:
+- Run:
   ```
   python3 txt2html.py
   ```
-- Open this file in a browser:
+- Enter the name of the image you need to scan and click enter:
+  ```
+  Please enter the name of the image to scan:
+  ```
+- Wait until the scan is completed and open this file in a browser:
   ```
   output.html
   ```
@@ -48,7 +48,7 @@ Open-source project that use Drype to create a Vulnerability scan report for a c
 - [https://www.python.org/downloads/]() 🐍
 
 ## For contributions 🌟
-Create a push request of updates related to WIP features with a review request.
+Create a push request with your branch respecting 'feat/XXXX' of updates related to WIP features (review request is mandatory).
   
 ## License
 Open-source project all developed by hz59 - 2023.

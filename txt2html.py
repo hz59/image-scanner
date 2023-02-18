@@ -38,6 +38,19 @@ class MyHTMLParser(HTMLParser):
     def handle_charref(self, name):
         self.outfile.write(' ' * self.getpos()[1] + f'&#{name};\n')
 
+def generate_filter_html():
+    return '''
+        <label for="severity-filter">Filter by severity:</label>
+        <select id="severity-filter">
+            <option value="">All</option>
+            <option value="Critical">Critical</option>
+            <option value="High">High</option>
+            <option value="Medium">Medium</option>
+            <option value="Low">Low</option>
+            <option value="Unknown">Unknown</option>
+        </select>
+    '''
+
 def transform_txt_to_html(txt_file, html_file):
     with open(txt_file, 'r') as f:
         lines = f.readlines()
@@ -81,7 +94,8 @@ def transform_txt_to_html(txt_file, html_file):
         f.write('</style>\n')
         f.write('</head>\n')
         f.write('<body>\n')
-        f.write('<table>\n')
+        f.write(generate_filter_html())
+        f.write('<table id="scan-table">\n')
         f.write('<thead><tr><th>Scan results</th><th>Severity</th></tr></thead>\n')
         f.write('<tbody>\n')
 
@@ -117,6 +131,19 @@ def transform_txt_to_html(txt_file, html_file):
 
         f.write('</tbody>\n')
         f.write('</table>\n')
+        f.write('<script>\n')
+        f.write('document.getElementById("severity-filter").addEventListener("change", function() {\n')
+        f.write('    var selected = this.value;\n')
+        f.write('    var rows = document.querySelectorAll("#scan-table tbody tr");\n')
+        f.write('    for (var i = 0; i < rows.length; i++) {\n')
+        f.write('        if (selected === "" || rows[i].classList.contains(selected)) {\n')
+        f.write('            rows[i].style.display = "table-row";\n')
+        f.write('        } else {\n')
+        f.write('            rows[i].style.display = "none";\n')
+        f.write('        }\n')
+        f.write('    }\n')
+        f.write('});\n')
+        f.write('</script>\n')
         f.write('</body>\n')
         f.write('</html>\n')
 

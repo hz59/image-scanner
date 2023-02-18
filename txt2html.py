@@ -1,5 +1,19 @@
 import os
 from html.parser import HTMLParser
+import subprocess
+
+# Prompt the user for the name of the image to scan
+image_name = input("Please enter the name of the image to scan: ")
+
+# Run the scan using grype and capture the output
+scan_output = subprocess.check_output(['grype', image_name])
+
+# Write the output to a text file
+with open('scan-result.txt', 'w') as file:
+    file.write(scan_output.decode('utf-8'))
+    
+# Print a confirmation message
+print(f"Scan results saved to scan-result.txt for image: {image_name}")
 
 class MyHTMLParser(HTMLParser):
     def __init__(self, outfile):

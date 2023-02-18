@@ -37,10 +37,10 @@ Open-source project that use Drype to create a Vulnerability scan report for a c
     - Syft Version: 0.72.0
   ```
 ## Next versions ⚗️
-| Features | When |
+| Features | Status |
 | ---     | ---   |
-| Improve the html results | Next soon |
-| Improve python script with prompt | Next soon |
+| Improve the html results | In progress |
+| Improve python script with prompt | First version available |
 | Docker-compose to launch the project | Next |
 
 ## References 🖇

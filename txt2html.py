@@ -1,42 +1,35 @@
 import os
-from html.parser import HTMLParser
 import subprocess
+from html.parser import HTMLParser
+from flask import Flask, request, render_template, send_file
 
-# Prompt the user for the name of the image to scan
-image_name = input("Please enter the name of the image to scan: ")
+app = Flask(__name__)
 
-# Run the scan using grype and capture the output
-scan_output = subprocess.check_output(['grype', image_name])
+@app.route('/')
+def index():
+    return render_template('index.html')
 
-# Write the output to a text file
-with open('scan-result.txt', 'w') as file:
-    file.write(scan_output.decode('utf-8'))
-    
-# Print a confirmation message
-print(f"Scan results saved to scan-result.txt for image: {image_name}")
+@app.route('/scan', methods=['POST'])
+def scan():
+    image_name = request.form['image_name']
+    scan_output = subprocess.check_output(['grype', image_name])
+    with open('scan-result.txt', 'w') as file:
+        file.write(scan_output.decode('utf-8'))
+    transform_txt_to_html('scan-result.txt', 'scan-result.html')
+    return result()
 
-class MyHTMLParser(HTMLParser):
-    def __init__(self, outfile):
-        super().__init__()
-        self.outfile = outfile
+@app.route('/output', methods=['POST'])
+def convert_txt_to_html():
+    image_name = request.form['image_name']
+    scan_output = subprocess.check_output(['grype', image_name])
+    with open('scan-result.txt', 'w') as file:
+        file.write(scan_output.decode('utf-8'))
+    transform_txt_to_html('scan-result.txt', 'scan-result.html')
+    return send_file('scan-result.html')
 
-    def handle_starttag(self, tag, attrs):
-        self.outfile.write(' ' * self.getpos()[1] + f'<{tag}>\n')
-
-    def handle_endtag(self, tag):
-        self.outfile.write(' ' * self.getpos()[1] + f'</{tag}>\n')
-
-    def handle_data(self, data):
-        self.outfile.write(' ' * self.getpos()[1] + f'{data}\n')
-
-    def handle_comment(self, data):
-        self.outfile.write(' ' * self.getpos()[1] + f'<!--{data}-->\n')
-
-    def handle_entityref(self, name):
-        self.outfile.write(' ' * self.getpos()[1] + f'&{name};\n')
-
-    def handle_charref(self, name):
-        self.outfile.write(' ' * self.getpos()[1] + f'&#{name};\n')
+@app.route('/result')
+def result():
+    return send_file('scan-result.html')
 
 def generate_filter_html():
     return '''
@@ -60,7 +53,7 @@ def transform_txt_to_html(txt_file, html_file):
         f.write('<html>\n')
         f.write('<head>\n')
         f.write('<title>ImScan</title>\n')
-        f.write('<link rel="icon" type="image/png" href="./img/imscan.ico">\n')
+        f.write('<link rel="icon" type="image/png" href="{"./static/imscan.ico"}">\n')
         f.write('<style>\n')
         f.write('body {\n')
         f.write('    background-color: #162041;\n')
@@ -110,7 +103,7 @@ def transform_txt_to_html(txt_file, html_file):
         f.write('</head>\n')
         f.write('<body>\n')
         f.write('<div style="display:flex;align-items:center;">')
-        f.write('<img src="./img/imscan.png" style="width: 200px; height: auto; border-radius: 21px; margin-right: 20px;"></img>')
+        f.write(f'<img src="{"./static/imscan.png"}" style="width: 200px; height: auto; border-radius: 21px; margin-right: 20px;"></img>')
         f.write('</div>\n')
         f.write('<p>The following vulnerabilities were found in the image:</p>\n')
         f.write(generate_filter_html())
@@ -169,3 +162,6 @@ def transform_txt_to_html(txt_file, html_file):
     print(f"HTML file written to {os.path.abspath(html_file)}")
 
 transform_txt_to_html('./scan-result.txt', 'output.html')
+
+if __name__ == "__main__":
+    app.run()

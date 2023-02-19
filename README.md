@@ -45,6 +45,7 @@ Open-source project that use Grype to create a Vulnerability scan report for a c
 | ---     | ---   |
 | Improve the html results | In progress |
 | Improve python script with prompt | First version available |
+| Integrate Flask for prompt from the front | Next soon |
 | Docker-compose to launch the project | Next |
 
 ## References 🖇

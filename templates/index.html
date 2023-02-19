@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>ImScan</title>
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='imscan.ico') }}">
+</head>
+<body style="background-color: #162041; color: #fff;">
+    <div style="display:flex;align-items:center;">
+        <img src="{{ url_for('static', filename='imscan.png') }}" alt="Scan Image" style="width: 200px; height: auto; border-radius: 21px; margin-right: 20px;"></img>
+        <p></p>
+    </div>
+    <form action="/scan" method="post">
+        <br>
+        <label for="image_name"><h2>Please enter the image name to scan:</h2></label>
+        <input type="text" name="image_name" id="image_name">
+        <input type="submit" value="Scan">
+    </form>
+</body>
+</html>

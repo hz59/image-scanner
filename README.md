@@ -1,5 +1,9 @@
-Image-Scanner 👁‍🗨
-===
+<img src="./img/imscan.png" style=" display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+  border-radius: 21px;" class="center" width="40%" height="60%"></img>
+
 Open-source project that use Drype to create a Vulnerability scan report for a choosen image.
 ## Informations  ☕️
 - Title:  `image-scanner`
@@ -49,8 +53,22 @@ Open-source project that use Drype to create a Vulnerability scan report for a c
 
 ## For contributions 🌟
 Create a push request with your branch respecting 'feat/XXXX' of updates related to WIP features (review request is mandatory).
-  
-## License
-Open-source project all developed by hz59 - 2023.
+
+## Samples views 
+<img src="./img/sample1.png"  width="70%" height="60%" style=" display: block;
+  margin-left: auto;
+  margin-right: auto;" class="center"> <p>
+<img src="./img/sample2.png"  width="70%" height="60%" style=" display: block;
+  margin-left: auto;
+  margin-right: auto;" class="center">
+
+### 📲 Support us on social medias
+<img src="./img/imscan.io_qr.png" style=" display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 10px;" class="center" width="20%" height="10%">
+
+  #### License
+- Open-source project all developed by hz59 / 2023.
 
 

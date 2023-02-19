@@ -54,13 +54,10 @@ Open-source project that use Grype to create a Vulnerability scan report for a c
 ## For contributions 🌟
 Create a push request with your branch respecting 'feat/XXXX' of updates related to WIP features (review request is mandatory).
 
-## Samples views 
+## Sample view
 <img src="./img/sample1.png"  width="70%" height="60%" style=" display: block;
   margin-left: auto;
   margin-right: auto;" class="center"> <p>
-<img src="./img/sample2.png"  width="70%" height="60%" style=" display: block;
-  margin-left: auto;
-  margin-right: auto;" class="center">
 
 ### 📲 Support us on social medias
 <img src="./img/imscan.io_qr.png" style=" display: block;

@@ -40,14 +40,14 @@ class MyHTMLParser(HTMLParser):
 
 def generate_filter_html():
     return '''
-        <label for="severity-filter">Filter by severity:</label>
-        <select id="severity-filter">
+        <label for="severity-filter" style="font-weight: bold;">Filter by severity:</label>
+        <select id="severity-filter" style="padding: 5px; border-radius: 5px; margin-left: 10px;">
             <option value="">All</option>
-            <option value="Critical">Critical</option>
-            <option value="High">High</option>
-            <option value="Medium">Medium</option>
-            <option value="Low">Low</option>
-            <option value="Unknown">Unknown</option>
+            <option value="Critical" style="background-color: #F56767; color: white;">Critical</option>
+            <option value="High" style="background-color: #FC986D; color: white;">High</option>
+            <option value="Medium" style="background-color: #FCD56D; color: white;">Medium</option>
+            <option value="Low" style="background-color: #AEE56D; color: white;">Low</option>
+            <option value="Unknown" style="background-color: #E0ECE0; color: black;">Unknown</option>
         </select>
     '''
 
@@ -59,10 +59,12 @@ def transform_txt_to_html(txt_file, html_file):
         f.write('<!DOCTYPE html>\n')
         f.write('<html>\n')
         f.write('<head>\n')
-        f.write('<title>Image-Scanner</title>\n')
+        f.write('<title>ImScan</title>\n')
+        f.write('<link rel="icon" type="image/png" href="./img/imscan.ico">\n')
         f.write('<style>\n')
         f.write('body {\n')
-        f.write('    background-color: #f2f2f2;\n')
+        f.write('    background-color: #162041;\n')
+        f.write('    color: #fff;\n')
         f.write('}\n')
         f.write('table {\n')
         f.write('    border-collapse: collapse;\n')
@@ -71,37 +73,45 @@ def transform_txt_to_html(txt_file, html_file):
         f.write('}\n')
         f.write('th, td {\n')
         f.write('    text-align: left;\n')
-        f.write('    padding: 8px;\n')
+        f.write('    padding: 12px;\n')
         f.write('}\n')
         f.write('th {\n')
-        f.write('    background-color: #f5f5f5;\n')
-        f.write('    border-bottom: 1px solid #dddddd;\n')
+        f.write('    background-color: #D6EAF8;\n')
+        f.write('    border-bottom: 2px solid #7FB3D5;\n')
+        f.write('    color: #34495E;\n')
         f.write('}\n')
         f.write('td {\n')
-        f.write('    border-bottom: 1px solid #dddddd;\n')
+        f.write('    border-bottom: 1px solid #E0E0E0;\n')
         f.write('}\n')
         f.write('.Low {\n')
         f.write('    background-color: #AEE56D;\n')
+        f.write('    color: #1E8449;\n')
         f.write('}\n')
         f.write('.Medium {\n')
         f.write('    background-color: #FCD56D;\n')
+        f.write('    color: #B7950B;\n')
         f.write('}\n')
         f.write('.High {\n')
         f.write('    background-color: #FC986D;\n')
+        f.write('    color: #922B21;\n')
         f.write('}\n')
         f.write('.Critical {\n')
         f.write('    background-color: #F56767;\n')
+        f.write('    color: #641E16;\n')
         f.write('}\n')
         f.write('.Unknown {\n')
         f.write('    background-color: #E0ECE0;\n')
+        f.write('    color: #6E6E6E;\n')
         f.write('}\n')
         f.write('tr:hover {\n')
-        f.write('    background-color: #9EB5DB;\n')
+        f.write('    background-color: #7FB3D5;\n')
         f.write('}\n')
         f.write('</style>\n')
         f.write('</head>\n')
         f.write('<body>\n')
-        f.write('<h1>Image-Scanner</h1>\n')
+        f.write('<div style="display:flex;align-items:center;">')
+        f.write('<img src="./img/imscan.png" style="width: 200px; height: auto; border-radius: 21px; margin-right: 20px;"></img>')
+        f.write('</div>\n')
         f.write('<p>The following vulnerabilities were found in the image:</p>\n')
         f.write(generate_filter_html())
         f.write('<table id="scan-table">\n')

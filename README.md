@@ -4,7 +4,7 @@
   width: 40%;
   border-radius: 21px;" class="center"></img>
 
-Open-source project that use Drype to create a Vulnerability scan report for a choosen image.
+Open-source project that use Grype to create a Vulnerability scan report for a choosen image.
 ## Informations  ☕️
 - Title:  `image-scanner`
 - Author:  `hz59`

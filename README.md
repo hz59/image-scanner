@@ -19,18 +19,16 @@ Open-source project that use Grype to create a Vulnerability scan report for a c
   ```
   python3 txt2html.py
   ```
-- Enter the name of the image you need to scan and click enter:
+- Run 127.0.0.1:5000 in a browser:
   ```
   Please enter the name of the image to scan:
   ```
-- Wait until the scan is completed and open this file in a browser:
-  ```
-  output.html
-  ```
+- Wait until the scan is completed, you'll be redirected to /scan endpoint with the scan report result.
+
 ## Directory Hierarchy
 ```
-|—— output.html
-|—— scan-result.txt
+|—— static/
+|—— templates/
 |—— txt2html.py
 ```
 ## Code supported ☀️

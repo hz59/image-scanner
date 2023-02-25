@@ -8,7 +8,7 @@ Open-source project that use Grype to create a Vulnerability scan report for a c
 ## Informations  ☕️
 - Title:  `image-scanner`
 - Author:  `hz59`
-- email: [coming soon]()
+- email: [hz59.dev@gmail.com]()
 
 ## Install & Dependence  🚀
 - python3
